@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class followMovementDirection : MonoBehaviour
 {
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float leadDistance = 5;
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponentInParent<Rigidbody2D>();
-    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.localPosition = rb.velocity * leadDistance;
+        Vector3 v = rb.velocity* leadDistance;
+        transform.position = rb.transform.position + v;
     }
 }

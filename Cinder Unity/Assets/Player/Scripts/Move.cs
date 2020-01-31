@@ -8,18 +8,35 @@ public class Move : MonoBehaviour
     
     public float movementSpeed = 0.1f;
     private float lerpRate = 0.1f;
+    private float moveInput;
     Rigidbody2D rb;
+
+    [HideInInspector]
+    public bool facingRight;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        facingRight = true;
+    }
+
+    void Update()
+    {
+        moveInput = Input.GetAxisRaw("Horizontal");
     }
 
     void FixedUpdate()
     {
-        Vector3 newSpeed = new Vector3(Input.GetAxisRaw("Horizontal") * movementSpeed, rb.velocity.y,0);
+        Vector2 newSpeed = new Vector2(moveInput * movementSpeed, rb.velocity.y);
         rb.velocity = newSpeed;
-        //rb.velocity = Vector2.Lerp(rb.velocity,newSpeed,lerpRate);
-        //Debug.Log(rb.velocity);
+        if(moveInput < 0)
+        {
+            facingRight = false;
+        }
+        else
+        {
+            facingRight = true;
+        }
         
     }
 }

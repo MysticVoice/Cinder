@@ -49,10 +49,6 @@ public class Jump : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-        
-        
-
         if(rb.velocity.y < -maxFallVelocity)
         {
             Vector2 v = new Vector2(rb.velocity.x,-maxFallVelocity);
@@ -62,14 +58,15 @@ public class Jump : MonoBehaviour
 
     private void jump()
     {
+        
         if (jumpInput && isGrounded)
         {
-            rb.velocity = Vector2.up * jumpVelocity;
+            rb.velocity = getJumpVector();
         }
 
         else if (jumpInput && extraJumps > 0)
         {
-            rb.velocity = Vector2.up * jumpVelocity;
+            rb.velocity = getJumpVector();
             extraJumps--;
         }
 
@@ -81,5 +78,12 @@ public class Jump : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
+
+    private Vector2 getJumpVector()
+    {
+        Vector2 jump = Vector2.up * jumpVelocity;
+        jump.x = rb.velocity.x;
+        return jump;
     }
 }

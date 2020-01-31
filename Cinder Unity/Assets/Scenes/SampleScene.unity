@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 230096019}
   - component: {fileID: 230096018}
   - component: {fileID: 230096017}
+  - component: {fileID: 230096020}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -328,9 +329,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1217296352}
-  - {fileID: 826288930}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &230096017
 MonoBehaviour:
@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
+  facingRight: 0
 --- !u!114 &230096018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +389,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &230096020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230096013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430f710b5ec7f5943af2bd7afc59af94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 10
+  dashDur: 5
 --- !u!1 &262104588
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,7 +442,7 @@ Transform:
   - {fileID: 689430422}
   - {fileID: 1631537266}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285191245
 GameObject:
@@ -685,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 826288929}
-  lerpFactor: 1
+  lerpFactor: 0.9
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1199,11 +1214,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826288929}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.8462162, y: 7.12, z: -2.7703023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 230096016}
+  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &826288931
@@ -1218,7 +1233,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e233bf36771e434188896a5fc65a209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leadDistance: 1.5
+  rb: {fileID: 230096019}
+  leadDistance: 0
 --- !u!1 &966287111
 GameObject:
   m_ObjectHideFlags: 0

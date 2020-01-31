@@ -9,8 +9,7 @@ public class lerpCam : MonoBehaviour
 
     void LateUpdate()
     {
-        Vector3 pos = Vector3.Lerp(transform.position, cameraTarget.transform.position, lerpFactor*Time.deltaTime);
-        pos.z = transform.position.z;
-        transform.position = pos;
+        Vector2 pos = Vector2.Lerp(transform.position, cameraTarget.transform.position, lerpFactor*Time.deltaTime);
+        transform.position = new Vector3(pos.x,pos.y,-10);
     }
 }
