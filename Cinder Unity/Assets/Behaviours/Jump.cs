@@ -24,29 +24,13 @@ public class Jump : MonoBehaviour
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
-    private bool jumpInput;
-    private bool jumpHold;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        jumpInput = false;
-        jumpHold = false;
         extraJumps = extraJumpValue;
     }
-    void Update()
-    {
-        
-        jumpInput = Input.GetButtonDown("Jump");
-        jumpHold = Input.GetButton("Jump");
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        if (isGrounded)
-        {
-            extraJumps = extraJumpValue;
-        }
 
-        jump();
-    }
     void FixedUpdate()
     {
         if(rb.velocity.y < -maxFallVelocity)
@@ -56,9 +40,13 @@ public class Jump : MonoBehaviour
         }
     }
 
-    private void jump()
+    public void jump(bool jumpInput,bool jumpHold)
     {
-        
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+        if (isGrounded)
+        {
+            extraJumps = extraJumpValue;
+        }
         if (jumpInput && isGrounded)
         {
             rb.velocity = getJumpVector();

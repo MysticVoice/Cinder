@@ -5,48 +5,49 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     public float dashSpeed = 20;
-    public float dashDur = 5;
+    public int dashDur = 5;
+    public int cooldownDur = 15;
     float dashCounter;
+    int cooldown;
     Rigidbody2D rb;
     Move move;
 
-    bool dashKey;
-
-    // Start is called before the first frame update
     void Start()
     {
-        dashKey = false;
+        cooldown = 0;
         rb = GetComponent<Rigidbody2D>();
         move = GetComponent<Move>();
     }
 
-    void Update()
+    public void dash(bool dashInput)
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        dashKey = true;
-    }
-
-    void FixedUpdate()
-    {
-        if (dashKey && dashCounter == 0)
+        if (cooldown == 0)
         {
-            dashCounter = dashDur;
-            dashKey = false;
+            if (dashInput && dashCounter == 0)
+            {
+                dashCounter = dashDur;
+                dashInput = false;
+                cooldown = cooldownDur;
+            }
         }
-        if (dashCounter >0)
+        else
         {
-            dash();
+            dashInput = false;
+            cooldown--;
+        }
+        if (dashCounter > 0)
+        {
+            useDash();
             move.enabled = false;
             dashCounter--;
-            if(dashCounter == 0)
+            if (dashCounter == 0)
             {
                 move.enabled = true;
             }
         }
-        
     }
 
-    public void dash()
+    public void useDash()
     {
         Vector3 v;
         if (move.facingRight)
