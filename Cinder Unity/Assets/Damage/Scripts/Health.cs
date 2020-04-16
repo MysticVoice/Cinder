@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        t.text = "Health: " + currentHealth;
+        //t.text = "Health: " + currentHealth;
     }
 
     // Update is called once per frame
@@ -24,13 +24,18 @@ public class Health : MonoBehaviour
     public void damage(int damage)
     {
         currentHealth -= damage;
-        t.text = "Health: " + currentHealth;
+        //t.text = "Health: " + currentHealth;
         if (currentHealth<=0)
         {
             die();
         }
     }
-    
+
+    public int getCurrentHealth()
+    {
+        return currentHealth;
+    }
+
     private void die()
     {
         Destroy(this.gameObject);
