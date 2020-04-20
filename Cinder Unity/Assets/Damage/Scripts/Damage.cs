@@ -5,14 +5,37 @@ using UnityEngine;
 public class Damage : MonoBehaviour
 {
     public int damage;
+    bool takeDamage;
+    Collider2D player;
 
-    void OnTriggerStay2D(Collider2D other)
+    void Awake()
     {
-        Debug.Log("Trigger Detected");
+        takeDamage = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.tag == "Player")
         {
-            Debug.Log("Damage done");
-            Health health = other.gameObject.GetComponent<Health>();
+            takeDamage = true;
+            player = other;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            takeDamage = false;
+            player = null;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(takeDamage)
+        {
+            Health health = player.gameObject.GetComponent<Health>();
             health.damage(damage);
         }
     }
