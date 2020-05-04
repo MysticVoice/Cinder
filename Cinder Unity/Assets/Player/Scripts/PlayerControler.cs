@@ -10,6 +10,7 @@ public class PlayerControler : MonoBehaviour
     public followMovementDirection cameraTarget;
     bool spiritMode;
     public float spiritSpeedMultiplier;
+    public Climbable climbingObject;
 
     #region public settings
     public int maxFlame = 200;
@@ -24,6 +25,7 @@ public class PlayerControler : MonoBehaviour
     public Jump jump;
     public HoldingItem heldItem;
     public Move move;
+    public Climb climb;
     #endregion
 
     #region input variables
@@ -69,22 +71,43 @@ public class PlayerControler : MonoBehaviour
 
     private void controlPlayer()
     {
-        if (jump != null) jump.jump(jumpInput, jumpHold);
-        if (heldItem != null)
+        if (climbingObject == null)
         {
-            if (pickupInput) heldItem.pickupOrDrop();
-            if (pickupHold && heldItem != null) heldItem.useItem();
+            if (jump != null) jump.jump(jumpInput, jumpHold);
+            if (heldItem != null)
+            {
+                if (pickupInput) heldItem.pickupOrDrop();
+                if (pickupHold && heldItem != null) heldItem.useItem();
+            }
+            if (useableBody != null)
+            {
+                if (switchBodyInput && !ReferenceEquals(useableBody, controlObject)) switchBody(useableBody);
+            }
+            move.move(moveInput);
+            if (move.vertical)
+            {
+                move.moveVertical(moveVerticalInput);
+            }
+            if (dash != null) dash.dash(dashInput);
         }
-        if (useableBody != null)
+        if(climbingObject != null)
         {
-            if (switchBodyInput && !ReferenceEquals(useableBody,controlObject)) switchBody(useableBody);
+            if(climbingObject.vertical)
+            {
+                climb.climb(moveVerticalInput,climbingObject.vertical);
+            }
+            else
+            {
+                climb.climb(moveInput, climbingObject.vertical);
+            }
+            
+            if(jumpInput)
+            {
+                climbingObject.letGo();
+                jump.jump(jumpInput, jumpHold);
+            }
+            jump.resetJumps();
         }
-        move.move(moveInput);
-        if(move.vertical)
-        {
-            move.moveVertical(moveVerticalInput);
-        }
-        if (dash != null) dash.dash(dashInput);
     }
 
     #region input handling
