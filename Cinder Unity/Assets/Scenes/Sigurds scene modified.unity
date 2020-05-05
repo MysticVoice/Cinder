@@ -640,7 +640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 114, y: 628}
+  m_AnchoredPosition: {x: 114, y: 25}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &69723789
@@ -898,6 +898,21 @@ PrefabInstance:
       propertyPath: t
       value: 
       objectReference: {fileID: 69723789}
+    - target: {fileID: 8764769742597500031, guid: cf0749340b281d447b1c44c694e1dd5a,
+        type: 3}
+      propertyPath: maxHealth
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764769742597500031, guid: cf0749340b281d447b1c44c694e1dd5a,
+        type: 3}
+      propertyPath: regenAmmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764769742597500031, guid: cf0749340b281d447b1c44c694e1dd5a,
+        type: 3}
+      propertyPath: healthTickCount
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf0749340b281d447b1c44c694e1dd5a, type: 3}
 --- !u!4 &166140008 stripped
@@ -7898,6 +7913,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: {fileID: 69723789}
   maxHealth: 50
+  healthTickCount: 10
+  regenAmmount: 10
 --- !u!61 &1582157243
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9712,7 +9729,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 181.70001, y: 634.4}
+  m_AnchoredPosition: {x: 181.70001, y: 31.400024}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1905768933

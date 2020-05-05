@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     public Text t;
     public int maxHealth;
     private int currentHealth;
+    public int healthTickCount = 10;
+    private int currentTick = 0;
+    public float regenAmmount = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,14 @@ public class Health : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        currentTick++;
+        if(currentTick >= healthTickCount)
+        {
+            regenBasedOnHp();
+            currentTick = 0;
+        }
     }
 
     public void damage(int damage)
@@ -39,5 +47,10 @@ public class Health : MonoBehaviour
     private void die()
     {
         Destroy(this.gameObject);
+    }
+    
+    private void regenBasedOnHp()
+    {
+        currentHealth += (int)(regenAmmount *(1f / ((float)currentHealth / (float)maxHealth)));
     }
 }
