@@ -16,7 +16,8 @@ public class Jump : MonoBehaviour
 
     public int extraJumpValue = 1;
 
-    private int extraJumps;
+    [HideInInspector]
+    public int extraJumps;
 
     Rigidbody2D rb;
 
@@ -67,7 +68,10 @@ public class Jump : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
     }
-
+    public void resetJumps()
+    {
+        extraJumps = extraJumpValue;
+    }
     private Vector2 getJumpVector()
     {
         Vector2 jump = Vector2.up * jumpVelocity;
