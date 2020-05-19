@@ -39,6 +39,30 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Floaty deco platform 1
+    uniqueID: 2435747897
+    locked: 0
+  - name: Dark backround
+    uniqueID: 904039077
+    locked: 0
+  - name: Floaty deco platform 2
+    uniqueID: 2256661311
+    locked: 0
+  - name: Backround
+    uniqueID: 109670405
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Over default
+    uniqueID: 413393919
+    locked: 0
+  - name: Player
+    uniqueID: 4262200633
+    locked: 0
+  - name: Foreground
+    uniqueID: 3693690017
+    locked: 0
+  - name: Border
+    uniqueID: 1203304757
     locked: 0
